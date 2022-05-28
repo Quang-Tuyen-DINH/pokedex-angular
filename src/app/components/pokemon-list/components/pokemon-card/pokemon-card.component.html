@@ -1,6 +1,18 @@
-<div class="card-container">
-  {{name}}
-  {{type}}
-  <img src={{photo}}>
+<div>
+  <mat-card class="card-container bg-{{types[0]}}">
+    <div class="card-header">
+      <div class="card-photo">
+        <img src={{photo}} alt={{name}}>
+      </div>
+    </div>
+    <mat-card-content class="card-body">
+      <div class="card-details">
+        <span class="pokemon-id">#{{id}}</span>
+        <span class="pokemon-name">{{name | titlecase}}</span>
+      </div>
+      <mat-chip-list class="card-types">
+        <mat-chip class="type-{{type}}" *ngFor="let type of types">{{type | titlecase}}</mat-chip>
+      </mat-chip-list>
+    </mat-card-content>
+  </mat-card>
 </div>
-

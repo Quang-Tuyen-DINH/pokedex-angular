@@ -1,0 +1,15 @@
+.list-container {
+  padding: 20px;
+  height: 100vh;
+
+  .cards-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+
+    .card {
+      margin: 2.5rem 1rem;
+      width: 200px;
+    }
+  }
+}

@@ -1,98 +1,197 @@
 /* You can add global styles to this file, and also import other style files */
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
 
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+//Background colors
 .bg-normal {
-	background-color: #A8A77A;
+  background-image: linear-gradient(#FFF886, #F072B6);
 	color: #fff;
 }
 
 .bg-fire {
-	background-color: #EE8130;
+  background-image: linear-gradient(#FFE985, #FA742B);
 	color: #fff;
 }
 
 .bg-water {
-	background-color: #6390F0;
+  background-image: linear-gradient(#65FDF0, #1D6FA3);
 	color: #fff;
 }
 
 .bg-electric {
-	background-color: #F7D02C;
+  background-image: linear-gradient(#FCFF00, #FFA8A8);
 	color: #fff;
 }
 
 .bg-grass {
-	background-color: #7AC74C;
+  background-image: linear-gradient(#70F570, #49C628);
 	color: #fff;
 }
 
 .bg-ice {
-	background-color: #96D9D6;
+  background-image: linear-gradient(#3C8CE7, #00EAFF);
 	color: #fff;
 }
 
 .bg-fighting {
-	background-color: #C22E28;
+  background-image: linear-gradient(#FEB692, #EA5455);
 	color: #fff;
 }
 
 .bg-poison {
-	background-color: #A33EA1;
+  background-image: linear-gradient(#E2B0FF, #9F44D3);
 	color: #fff;
 }
 
 .bg-ground {
-	background-color: #E2BF65;
+  background-image: linear-gradient(#FFDB01, #0E197D);
 	color: #fff;
 }
 
 .bg-flying {
-	background-color: #A98FF3;
+  background-image: linear-gradient(#79F1A4, #0E5CAD);
 	color: #fff;
 }
 
 .bg-psychic {
-	background-color: #F95587;
+  background-image: linear-gradient(#F6CEEC, #D939CD);
 	color: #fff;
 }
 
 .bg-bug {
-	background-color: #A6B91A;
+  background-image: linear-gradient(#A0FE65, #FA016D);
 	color: #fff;
 }
 
 .bg-rock {
-	background-color: #B6A136;
+  background-image: linear-gradient(#FFCF71, #2376DD);
 	color: #fff;
 }
 
 .bg-ghost, .bg-shadow {
-	background-color: #735797;
+  background-image: linear-gradient(#3B2667, #BC78EC);
 	color: #fff;
 }
 
 .bg-dragon {
-	background-color: #6F35FC;
+  background-image: linear-gradient(#FFF6B7, #F6416C);
 	color: #fff;
 }
 
 .bg-dark {
-	background-color: #705746;
+  background-image: linear-gradient(#F97794, #623AA2);
 	color: #fff;
 }
 
 .bg-steel {
-	background-color: #B7B7CE;
+  background-image: linear-gradient(#FFF5C3, #9452A5);
 	color: #fff;
 }
 
 .bg-fairy {
-	background-color: #D685AD;
+  background-image: linear-gradient(#81FFEF, #F067B4);
 	color: #fff;
 }
 
 .bg-unknown {
-	background-color: #aaa;
+  background-image: linear-gradient(#F05F57, #360940);
 	color: #fff;
 }
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+//Types color
+.type-normal {
+	background-color: #A8A77A !important;
+	color: #fff;
+}
+
+.type-fire {
+	background-color: #e45a1b !important;
+	color: #fff;
+}
+
+.type-water {
+	background-color: #6390F0 !important;
+	color: #fff;
+}
+
+.type-electric {
+	background-color: #F7D02C !important;
+	color: #fff;
+}
+
+.type-grass {
+	background-color: #63b632 !important;
+	color: #fff;
+}
+
+.type-ice {
+	background-color: #96D9D6 !important;
+	color: #fff;
+}
+
+.type-fighting {
+	background-color: #C22E28 !important;
+	color: #fff;
+}
+
+.type-poison {
+	background-color: #A33EA1 !important;
+	color: #fff;
+}
+
+.type-ground {
+	background-color: #E2BF65 !important;
+	color: #fff;
+}
+
+.type-flying {
+	background-color: #A98FF3 !important;
+	color: #fff;
+}
+
+.type-psychic {
+	background-color: #F95587 !important;
+	color: #fff;
+}
+
+.type-bug {
+	background-color: #A6B91A !important;
+	color: #fff;
+}
+
+.type-rock {
+	background-color: #B6A136 !important;
+	color: #fff;
+}
+
+.type-ghost, .type-shadow {
+	background-color: #735797 !important;
+	color: #fff;
+}
+
+.type-dragon {
+	background-color: #6F35FC !important;
+	color: #fff;
+}
+
+.type-dark {
+	background-color: #705746 !important;
+	color: #fff;
+}
+
+.type-steel {
+	background-color: #B7B7CE !important;
+	color: #fff;
+}
+
+.type-fairy {
+	background-color: #c24a86 !important;
+	color: #fff;
+}
+
+.type-unknown {
+	background-color: #aaa !important;
+	color: #fff;
+}

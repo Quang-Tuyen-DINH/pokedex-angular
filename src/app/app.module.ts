@@ -8,6 +8,7 @@ import { PokemonListComponent } from './components/pokemon-list/pokemon-list.com
 import { PokemonViewComponent } from './components/pokemon-view/pokemon-view.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { PokemonCardComponent } from './components/pokemon-list/components/pokemon-card/pokemon-card.component';
+import { MaterialModule } from './material.module';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { PokemonCardComponent } from './components/pokemon-list/components/pokem
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    MaterialModule
   ],
   providers: [],
   bootstrap: [AppComponent]

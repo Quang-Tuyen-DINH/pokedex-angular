@@ -1,6 +1,6 @@
 <div class="list-container">
   <div class="cards-container">
-    <div *ngFor="let pkm of pokemons">
+    <div class="card" *ngFor="let pkm of pokemons">
       <app-pokemon-card [pokemon]="pkm"></app-pokemon-card>
     </div>
   </div>

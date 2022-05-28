@@ -8,9 +8,18 @@ import { Pokemon } from 'src/app/components/models/pokemon.model';
 })
 export class PokemonCardComponent implements OnInit {
   @Input() pokemon: Pokemon;
+  private _id: number;
   private _name: string;
   private _types: string[];
   private _photoUrl: string;
+
+  set id(id: number) {
+    this._id = id;
+  }
+
+  get id(): number {
+    return this._id;
+  }
 
   set name(name: string) {
     this._name = name;
@@ -20,12 +29,11 @@ export class PokemonCardComponent implements OnInit {
     return this._name;
   }
 
-  set type(types: string[]) {
-    console.log(types)
+  set types(types: string[]) {
     this._types = types;
   }
 
-  get type(): string[] {
+  get types(): string[] {
     return this._types;
   }
 
@@ -41,6 +49,12 @@ export class PokemonCardComponent implements OnInit {
 
   ngOnInit(): void {
     if(this.pokemon) {
+      if(this.pokemon.id) {
+        this.id = this.pokemon.id;
+      } else {
+        this.id = 0;
+      }
+
       if(this.pokemon.name) {
         this.name = this.pokemon.name;
       } else {
@@ -51,9 +65,9 @@ export class PokemonCardComponent implements OnInit {
         const types = this.pokemon.types.map(obj => {
           return obj.type && obj.type.name ? obj.type.name : '';
         })
-        this.type = types;
+        this.types = types;
       } else {
-        this.type = ['N/A'];
+        this.types = ['N/A'];
       }
 
       if(
