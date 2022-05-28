@@ -1,0 +1,8 @@
+<div class="list-container">
+  <div class="cards-container">
+    <div *ngFor="let pkm of pokemons">
+      <app-pokemon-card [pokemon]="pkm"></app-pokemon-card>
+    </div>
+  </div>
+  <button (click)="loadMore()">LOAD MORE</button>
+</div>
