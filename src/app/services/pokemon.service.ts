@@ -55,8 +55,12 @@ export class PokemonService {
   }
 
   getNext(): Observable<any> {
-    const url = this.nextPage === '' ? `${this.url}?offset=0&limit=1126` : this.nextPage;
+    const url = this.nextPage === '' ? `${this.url}?offset=0&limit=${this.total}` : this.nextPage;
     return this.http.get<any>(url);
+  }
+
+  getTotal(): Observable<any> {
+    return this.http.get<any>(this.url);
   }
 
   getEvolution(id: number): Observable<any> {

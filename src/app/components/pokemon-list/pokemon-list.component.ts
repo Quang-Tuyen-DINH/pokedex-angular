@@ -9,14 +9,13 @@ import { Pokemon } from '../models/pokemon.model';
   styleUrls: ['./pokemon-list.component.scss']
 })
 export class PokemonListComponent implements OnInit, OnDestroy {
-  isLoading: boolean = true;
   private subscription: Subscription = new Subscription();
 
   constructor(private pokemonService: PokemonService) { }
 
   ngOnInit(): void {
-    if (!this.pokemons.length) {
-      this.loadMore();
+    if(!this.pokemons.length) {
+      this.getTotal();
     }
   }
 
@@ -28,20 +27,26 @@ export class PokemonListComponent implements OnInit, OnDestroy {
     return this.pokemonService.total;
   }
 
+  getTotal() {
+    this.pokemonService.getTotal().subscribe(response => {
+      this.pokemonService.total = response.count; 
+      this.loadMore();
+    }, error => console.log('Error Occurred:', error));
+  }
+
   loadMore(): void {
-    this.isLoading = true;
     this.pokemonService.getNext().subscribe(response => {
       this.pokemonService.nextPage = response.next;
       const details = response.results.map((pkm: any) => this.pokemonService.getPokemon(pkm.name));
       this.subscription = concat(...details).subscribe((response: any) => {
         this.pokemonService.pokemons.push(response);
       });
-    }, error => console.log('Error Occurred:', error), () => this.isLoading = false);
-    console.log(this.pokemons)
+    }, error => console.log('Error Occurred:', error));
   }
 
   test() {
-    console.log(this.pokemons.length)
+    console.log(this.pokemons.length);
+    console.log(this.pokemonService.total);
   }
 
   ngOnDestroy(): void {

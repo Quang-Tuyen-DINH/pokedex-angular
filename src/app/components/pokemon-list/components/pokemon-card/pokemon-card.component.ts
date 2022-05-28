@@ -82,5 +82,4 @@ export class PokemonCardComponent implements OnInit {
       }
     }
   }
-
 }
