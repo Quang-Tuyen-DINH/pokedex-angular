@@ -2,14 +2,19 @@
   padding: 20px;
   height: 100vh;
 
-  .cards-container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
+  ::ng-deep #cdk-viewport {
+    height: 90vh;
+    width: 100vw;
 
-    .card {
-      margin: 2.5rem 1rem;
-      width: 200px;
+    .cdk-virtual-scroll-content-wrapper {
+      display: flex !important;
+      flex-wrap: wrap !important;
+      justify-content: center !important;
+
+      .card {
+        margin: 2.5rem 1rem;
+        width: 200px;
+      }
     }
   }
 }

@@ -10,7 +10,7 @@ import { Pokemon } from '../models/pokemon.model';
 })
 export class PokemonListComponent implements OnInit, OnDestroy {
   isLoading: boolean = true;
-  subscription: Subscription = new Subscription();
+  private subscription: Subscription = new Subscription();
 
   constructor(private pokemonService: PokemonService) { }
 
@@ -24,6 +24,10 @@ export class PokemonListComponent implements OnInit, OnDestroy {
     return this.pokemonService.pokemons;
   }
 
+  get total(): number {
+    return this.pokemonService.total;
+  }
+
   loadMore(): void {
     this.isLoading = true;
     this.pokemonService.getNext().subscribe(response => {
@@ -33,10 +37,11 @@ export class PokemonListComponent implements OnInit, OnDestroy {
         this.pokemonService.pokemons.push(response);
       });
     }, error => console.log('Error Occurred:', error), () => this.isLoading = false);
+    console.log(this.pokemons)
   }
 
-  getType(pokemon: any): string {
-    return this.pokemonService.getType(pokemon);
+  test() {
+    console.log(this.pokemons.length)
   }
 
   ngOnDestroy(): void {

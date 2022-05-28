@@ -1,8 +1,13 @@
+<button (click)="loadMore()">TEST</button>
+<button (click)="test()">CHECK LENGTH</button>
 <div class="list-container">
-  <div class="cards-container">
-    <div class="card" *ngFor="let pkm of pokemons">
+  <cdk-virtual-scroll-viewport
+      *ngIf="pokemons.length === 1126"
+      itemSize="1"
+      id="cdk-viewport"
+  >
+    <div class="card" *cdkVirtualFor="let pkm of pokemons">
       <app-pokemon-card [pokemon]="pkm"></app-pokemon-card>
     </div>
-  </div>
-  <button (click)="loadMore()">LOAD MORE</button>
+  </cdk-virtual-scroll-viewport>
 </div>

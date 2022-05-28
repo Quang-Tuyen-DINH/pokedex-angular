@@ -9,36 +9,45 @@ import { Pokemon } from '../components/models/pokemon.model';
 })
 export class PokemonService {
   private url: string = `${environment.pokeUrl}pokemon/`;
-  private pokemonsList: Pokemon[] = [];
-  private nextPageUrl: string = '';
+  private _pokemonsList: Pokemon[] = [];
+  private _nextPageUrl: string = '';
+  private _total: number = 0;
 
   constructor(private http: HttpClient) { }
 
   get pokemons(): Pokemon[] {
-    return this.pokemonsList;
+    return this._pokemonsList;
   }
   
   get nextPage(): string {
-    return this.nextPageUrl;
+    return this._nextPageUrl;
   }
 
   set nextPage(next: string) {
-    this.nextPageUrl = next;
+    this._nextPageUrl = next;
   }
   
-  getType(pokemon: Pokemon): string {
-    if(
-      pokemon
-      && pokemon.types
-      && pokemon.types.length > 0
-      && pokemon.types[0].type
-      && pokemon.types[0].type.name
-    ) {
-      return pokemon.types[0].type.name;
-    } else {
-      return '';
-    }
+  get total(): number {
+    return this._total;
   }
+
+  set total(total: number) {
+    this._total = this._total + total;
+  }
+  
+  // getType(pokemon: Pokemon): string {
+  //   if(
+  //     pokemon
+  //     && pokemon.types
+  //     && pokemon.types.length > 0
+  //     && pokemon.types[0].type
+  //     && pokemon.types[0].type.name
+  //   ) {
+  //     return pokemon.types[0].type.name;
+  //   } else {
+  //     return '';
+  //   }
+  // }
 
   getPokemon(name: string): Observable<any> {
     const url = `${this.url}${name}`;
@@ -46,7 +55,7 @@ export class PokemonService {
   }
 
   getNext(): Observable<any> {
-    const url = this.nextPage === '' ? `${this.url}?limit=10` : this.nextPage;
+    const url = this.nextPage === '' ? `${this.url}?offset=0&limit=1126` : this.nextPage;
     return this.http.get<any>(url);
   }
 
