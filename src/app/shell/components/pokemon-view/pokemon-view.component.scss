@@ -1,0 +1,62 @@
+::ng-deep .pokemon-view-dialog {
+  width: 100vw !important;
+  max-width: 100vw !important;
+}
+
+::ng-deep #pokemon-view-dialog {
+  padding: 0;
+}
+
+.dialog-container {
+  height: 100%;
+
+  .close-dialog-button {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+  }
+
+  .dialog-header {
+    padding: 50px 0 0 0;
+    text-align: center;
+
+    .pokemon-name {
+      display: block;
+      margin: 0.4rem 0 1.8rem 0;
+      font-weight: 600;
+      font-size: 60px;
+    }
+
+    .pokemon-type {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+  }
+
+  .dialog-body {
+    margin: 50px 0 0 0;
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+
+    .pokemon-details {
+      width: 30%;
+    }
+
+    .pokemon-photo {
+      width: 40%;
+      text-align: center;
+
+      img {
+        top: -50px;
+        max-width: 220px;
+        max-height: 220px;
+      }
+    }
+
+    .pokemon-stats-chart {
+      width: 30%;
+    }
+  }
+}

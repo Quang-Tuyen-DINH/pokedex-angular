@@ -6,7 +6,7 @@
     id="cdk-viewport"
     >
       <div class="card" *cdkVirtualFor="let pkm of pokemons">
-        <app-pokemon-card [routerLink]="['/view', pkm.name]" [pokemon]="pkm"></app-pokemon-card>
+        <app-pokemon-card (click)="openPokemonDialog(pkm)" [pokemon]="pkm"></app-pokemon-card>
       </div>
     </cdk-virtual-scroll-viewport>
   </div>

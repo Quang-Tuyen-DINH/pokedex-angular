@@ -49,8 +49,11 @@ export interface Pokemon {
     other?: {
       ['official-artwork']?: {
         front_default?: string
+      },
+      home?: {
+        front_default?: string
       }
-    }
+    },
   },
   stats?: [
     {

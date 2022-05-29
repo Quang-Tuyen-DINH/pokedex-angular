@@ -73,10 +73,10 @@ export class PokemonCardComponent implements OnInit {
       if(
         this.pokemon.sprites
         && this.pokemon.sprites.other
-        && this.pokemon.sprites.other['official-artwork']
-        && this.pokemon.sprites.other['official-artwork'].front_default
+        && this.pokemon.sprites.other.home
+        && this.pokemon.sprites.other.home.front_default
       ) {
-        this.photo = this.pokemon.sprites.other['official-artwork'].front_default;
+        this.photo = this.pokemon.sprites.other.home.front_default;
       } else {
         this.photo = '';
       }

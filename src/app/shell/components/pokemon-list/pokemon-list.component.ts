@@ -1,7 +1,9 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { concat, Subscription } from 'rxjs';
 import { PokemonService } from 'src/app/shell/services/pokemon.service';
 import { Pokemon } from '../../models/pokemon.model';
+import { PokemonViewComponent } from '../pokemon-view/pokemon-view.component';
 
 @Component({
   selector: 'app-pokemon-list',
@@ -12,7 +14,9 @@ export class PokemonListComponent implements OnInit, OnDestroy {
   private subscription: Subscription = new Subscription();
 
   constructor(
-    private pokemonService: PokemonService) { }
+    private pokemonService: PokemonService,
+    private dialog: MatDialog
+  ) { }
 
   ngOnInit(): void {
     if(!this.pokemons.length) {
@@ -46,7 +50,13 @@ export class PokemonListComponent implements OnInit, OnDestroy {
   }
 
   openPokemonDialog(pokemon: Pokemon) {
-
+    this.dialog.open(PokemonViewComponent, {
+      panelClass: 'pokemon-view-dialog',
+      width: '100%',
+      height: '100%',
+      data: pokemon,
+      id: 'pokemon-view-dialog'
+    });
   }
 
   ngOnDestroy(): void {
