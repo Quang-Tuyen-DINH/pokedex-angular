@@ -27,6 +27,9 @@ export class PokemonViewComponent implements OnInit {
   private _evolutionChain: any;
   //Radar Chart
   chartOptions = {
+    title: {
+      display: false
+    },
     responsive: true,
     maintainAspectRatio: false,
     legend: {
@@ -34,7 +37,15 @@ export class PokemonViewComponent implements OnInit {
     },
   };
   private _chartLabels: string[] = [];
-  private _chartData: ChartData[] = [{ data: [] }];
+  private _chartData: ChartData[] = [{
+    label: '',
+    fill: true,
+    backgroundColor: '',
+    borderColor:'',
+    pointBackgroundColor: '',
+    pointBorderColor: '#fff',
+    data: []
+  }];
 
   set id(id: number) {
     this._id = id;
@@ -125,7 +136,7 @@ export class PokemonViewComponent implements OnInit {
   }
 
   constructor(
-    @Inject(MAT_DIALOG_DATA) public pokemon: Pokemon,
+    @Inject(MAT_DIALOG_DATA) private pokemon: Pokemon,
     private pokemonService: PokemonService
   ) { }
 
@@ -177,14 +188,16 @@ export class PokemonViewComponent implements OnInit {
         this.weight = this.pokemon.weight;
       }
 
-      //Set stats
+      //Setup charts
       if(this.pokemon.stats) {
         this.pokemon.stats.map(stat => {
+          //Set chart labels
           if(stat.stat?.name) {
             let tempStatName: string;
             tempStatName = stat.stat.name.split('-').join(' ').toUpperCase();
             this.chartLabels.push(tempStatName);
           }
+          //Set chart stats
           if(stat.base_stat) {
             this.chartData[0].data?.push(stat.base_stat)
           }
@@ -193,6 +206,8 @@ export class PokemonViewComponent implements OnInit {
             base_stat: stat.base_stat
           })
         })
+        //Set name each element
+        this.chartData[0].label = this.name;
       }
 
       //Set abilities
