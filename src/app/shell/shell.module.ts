@@ -10,6 +10,7 @@ import {
   PokemonCardComponent,
   PokemonViewComponent
 } from './components';
+import { ChartsModule } from "@rinminase/ng-charts";
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import {
   imports: [
     CommonModule,
     ShellRoutingModule,
-    MaterialModule
+    MaterialModule,
+    ChartsModule
   ],
   bootstrap: [ShellComponent]
 })

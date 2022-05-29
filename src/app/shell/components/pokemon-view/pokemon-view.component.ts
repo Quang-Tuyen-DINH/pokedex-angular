@@ -1,5 +1,6 @@
 import { Component, ElementRef, Inject, OnInit, ViewChild } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { ChartData } from '../../models/chart-data.model';
 import { Pokemon } from '../../models/pokemon.model';
 import { Stat } from '../../models/stat.model';
 import { PokemonService } from '../../services/pokemon.service';
@@ -15,15 +16,25 @@ export class PokemonViewComponent implements OnInit {
   private _name: string;
   private _types: string[];
   private _photoUrl: string;
-  private _abilities: string[];
+  private _abilities: string[] = [];
   private _baseExp: number;
   private _height: number;
   private _weight: number;
   private _moves: Pokemon["moves"];
   private _species: string;
   private _stats: Stat[] = [];
-  private _encouters: string[];
+  private _encouters: string[] = [];
   private _evolutionChain: any;
+  //Radar Chart
+  chartOptions = {
+    responsive: true,
+    maintainAspectRatio: false,
+    legend: {
+      display: false
+    },
+  };
+  private _chartLabels: string[] = [];
+  private _chartData: ChartData[] = [{ data: [] }];
 
   set id(id: number) {
     this._id = id;
@@ -97,6 +108,22 @@ export class PokemonViewComponent implements OnInit {
     return this._stats;
   }
 
+  set chartLabels(chartLabels: string[]) {
+    this._chartLabels = chartLabels;
+  }
+
+  get chartLabels(): string[] {
+    return this._chartLabels;
+  }
+
+  set chartData(chartData: ChartData[]) {
+    this._chartData = chartData;
+  }
+
+  get chartData(): ChartData[] {
+    return this._chartData;
+  }
+
   constructor(
     @Inject(MAT_DIALOG_DATA) public pokemon: Pokemon,
     private pokemonService: PokemonService
@@ -140,22 +167,46 @@ export class PokemonViewComponent implements OnInit {
         this.photo = '';
       }
 
+      //Set Height
+      if(this.pokemon.height) {
+        this.height = this.pokemon.height;
+      }
+
+      //Set Weight
+      if(this.pokemon.weight) {
+        this.weight = this.pokemon.weight;
+      }
+
       //Set stats
       if(this.pokemon.stats) {
         this.pokemon.stats.map(stat => {
+          if(stat.stat?.name) {
+            let tempStatName: string;
+            tempStatName = stat.stat.name.split('-').join(' ').toUpperCase();
+            this.chartLabels.push(tempStatName);
+          }
+          if(stat.base_stat) {
+            this.chartData[0].data?.push(stat.base_stat)
+          }
           this.stats.push({
             name: stat.stat?.name,
             base_stat: stat.base_stat
           })
         })
-        this.drawStatsChart(this.stats);
-      } else {
-        this.stats = [];
+      }
+
+      //Set abilities
+      if(this.pokemon.abilities) {
+        this.pokemon.abilities.map(ability => {
+          if(ability.ability?.name) {
+            this.abilities.push(ability.ability.name.split('-').join(' '))
+          }
+        })
       }
     }
   }
-  
-  drawStatsChart(stats: Stat[]) {
-    this.statsChart.nativeElement.innerHTML = 'HELLO';
+
+  convertHeightWeight(value: number) {
+    return value*0.1;
   }
 }

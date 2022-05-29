@@ -1,19 +1,55 @@
-
 <div class="dialog-container bg-{{types[0]}}">
-  <button class="close-dialog-button" mat-dialog-close>Close</button>
+  <a class="close-dialog-button" mat-dialog-close></a>
   <div class="dialog-header">
     <span class="pokemon-name">{{name | titlecase}}</span>
-    <mat-chip-list class="pokemon-type">
-      <mat-chip class="type-{{type}}" *ngFor="let type of types">{{type | titlecase}}</mat-chip>
-    </mat-chip-list>
   </div>
   <div class="dialog-body">
-    <div>
-      <div class="pokemon-details"></div>
+    <div class="body-first-part">
       <div class="pokemon-photo">
         <img src={{photo}} alt={{name}}>
       </div>
-      <div class="pokemon-stats-chart" #statsChart></div>
+      <div class="pokemon-details">
+        <div class="details-wrapper">
+          <div class="detail">
+            <span class="detail-title">ID</span>
+            <span class="detail-content">#{{id}}</span>
+          </div>
+          <div class="detail">
+            <span class="detail-title">Height</span>
+            <span class="detail-content">{{convertHeightWeight(height) | number:'1.1-2'}}m</span>
+          </div>
+          <div class="detail">
+            <span class="detail-title">Weight</span>
+            <span class="detail-content">{{convertHeightWeight(weight) | number:'1.1-2'}}kg</span>
+          </div>
+          <div class="detail">
+            <span class="detail-title">Abilities</span>
+            <span class="detail-content">
+              <span *ngFor="let ability of abilities" style="padding-bottom: 10px; display: block;">{{ability | titlecase}}</span>
+            </span>
+          </div>
+          <div class="detail">
+            <span class="detail-title">Type</span>
+            <span class="detail-content">
+              <mat-chip-list class="pokemon-type">
+                <mat-chip class="type-{{type}}" *ngFor="let type of types">{{type | titlecase}}</mat-chip>
+              </mat-chip-list>
+            </span>
+          </div>
+        </div>
+      </div>
+      <div class="pokemon-stats-chart">
+        <div style="position: relative; height:30vh; width:60vw" #statsChart>
+            <canvas baseChart
+              chartType="radar"
+              [datasets]="chartData"
+              [options]="chartOptions"
+              [labels]="chartLabels">
+            </canvas>
+        </div>
+      </div>
+    </div>
+    <div class="body-second-part">
     </div>
   </div>
   <div class="dialog-footer"></div>
