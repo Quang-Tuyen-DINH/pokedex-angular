@@ -11,7 +11,8 @@ import { Pokemon } from '../../models/pokemon.model';
 export class PokemonListComponent implements OnInit, OnDestroy {
   private subscription: Subscription = new Subscription();
 
-  constructor(private pokemonService: PokemonService) { }
+  constructor(
+    private pokemonService: PokemonService) { }
 
   ngOnInit(): void {
     if(!this.pokemons.length) {
@@ -44,9 +45,8 @@ export class PokemonListComponent implements OnInit, OnDestroy {
     }, error => console.log('Error Occurred:', error));
   }
 
-  test() {
-    console.log(this.pokemons.length);
-    console.log(this.pokemonService.total);
+  openPokemonDialog(pokemon: Pokemon) {
+
   }
 
   ngOnDestroy(): void {

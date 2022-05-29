@@ -1,9 +1,4 @@
 <div class="list-container">
-  <!-- <button style="z-index: 999;" (click)="test()">TEST</button> -->
-  <div class="list-header">
-    <img *ngIf="pokemons.length === total" class="logo" src="assets/pkd-logo.svg">
-    <div class="fade-in"></div>
-  </div>
   <div *ngIf="pokemons.length === total; else spinner">
     <cdk-virtual-scroll-viewport
     *ngIf="pokemons.length === total"

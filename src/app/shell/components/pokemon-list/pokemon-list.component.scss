@@ -1,41 +1,13 @@
 .list-container {
-  height: 100vh;
+  height: 100%;
   background-image: linear-gradient(#ABDCFF, #0396FF);
-
-  .list-header {
-    height: 10vh;
-    text-align: center;
-    position: relative;
-    z-index: 7;
-
-    .logo {
-      position: relative;
-      margin: 10px;
-      width: 100px;
-      z-index: 9;
-    }
-
-    .fade-in {
-      position: absolute;
-      z-index: 8;
-      top: 0;
-      left: 0;
-      height: 100px;
-      width: 100%;
-      text-align: center;
-      margin: 0;
-      padding: 35px 0;
-      // background-image: linear-gradient(to bottom, #ABDCFF, #9CD2FE 75%, transparent 90%);
-    }  
-  }
 
   ::ng-deep #cdk-viewport {
     height: 90vh;
-    width: 100vw;
-    bottom: 0;
+    top: 10vh;
 
     .cdk-virtual-scroll-content-wrapper {
-      padding: 25px 0 0 0;
+      padding: 10px 0 0 0;
       display: flex !important;
       flex-wrap: wrap !important;
       justify-content: center !important;
@@ -52,9 +24,9 @@
     text-align: center;
     vertical-align: middle;
     width: 100vw;
-    margin: 35vh 0 0 0;
 
     .spinner {
+      margin: 25vh 0 0 0;
       text-align: center;
       animation: rotate 1.8s ease-in-out infinite;
     }
@@ -74,7 +46,7 @@
 
   //Custom scrollbar
   ::-webkit-scrollbar {
-    width: 40px;
+    width: 20px;
   }
   
   ::-webkit-scrollbar-track {
