@@ -35,6 +35,19 @@ export class PokemonViewComponent implements OnInit {
     legend: {
       display: false
     },
+    scale:{
+      //Labels
+      pointLabels:{
+        fontStyle: "bold",
+        fontColor: "#000000de"
+      },
+      gridLines: {
+        color: "#000000de"
+      },
+      angleLines: {
+        color: "#000000de"
+      }
+    }
   };
   private _chartLabels: string[] = [];
   private _chartData: ChartData[] = [{
