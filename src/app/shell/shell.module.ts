@@ -11,6 +11,7 @@ import {
   PokemonViewComponent
 } from './components';
 import { ChartsModule } from "@rinminase/ng-charts";
+import { MovesTableComponent } from './components/pokemon-view/components/moves-table/moves-table.component';
 
 @NgModule({
   declarations: [
@@ -19,6 +20,7 @@ import { ChartsModule } from "@rinminase/ng-charts";
     PokemonViewComponent,
     PokemonCardComponent,
     LandingComponent,
+    MovesTableComponent,
   ],
   imports: [
     CommonModule,

@@ -56,7 +56,7 @@ export class PokemonCardComponent implements OnInit {
       }
 
       if(this.pokemon.name) {
-        this.name = this.pokemon.name;
+        this.name = this.pokemon.name.split('-').join(' ');
       } else {
         this.name = 'N/A';
       }

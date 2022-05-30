@@ -1,9 +1,10 @@
 <div class="list-container">
   <div *ngIf="pokemons.length === total; else spinner">
     <cdk-virtual-scroll-viewport
-    *ngIf="pokemons.length === total"
-    itemSize="1"
-    id="cdk-viewport"
+      *ngIf="pokemons.length === total"
+      itemSize="1"
+      id="cdk-viewport"
+      (scroll)="onWindowScroll()"
     >
       <div class="card" *cdkVirtualFor="let pkm of pokemons">
         <app-pokemon-card (click)="openPokemonDialog(pkm)" [pokemon]="pkm"></app-pokemon-card>

@@ -1,7 +1,8 @@
-import { Component, ElementRef, Inject, OnInit, ViewChild } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { ChartData } from '../../models/chart-data.model';
 import { Pokemon } from '../../models/pokemon.model';
+import { Species } from '../../models/species.model';
 import { Stat } from '../../models/stat.model';
 import { PokemonService } from '../../services/pokemon.service';
 
@@ -11,7 +12,6 @@ import { PokemonService } from '../../services/pokemon.service';
   styleUrls: ['./pokemon-view.component.scss']
 })
 export class PokemonViewComponent implements OnInit {
-  @ViewChild('statsChart') statsChart: ElementRef;
   private _id: number;
   private _name: string;
   private _types: string[];
@@ -20,11 +20,13 @@ export class PokemonViewComponent implements OnInit {
   private _baseExp: number;
   private _height: number;
   private _weight: number;
+  private _captureRate: number;
+  private _habitat: string;
   private _moves: Pokemon["moves"];
-  private _species: string;
+  private _species: Species;
   private _stats: Stat[] = [];
   private _encouters: string[] = [];
-  private _evolutionChain: any;
+  private _evolutionChain: any[];
   //Radar Chart
   chartOptions = {
     title: {
@@ -124,6 +126,30 @@ export class PokemonViewComponent implements OnInit {
     return this._weight;
   }
 
+  set species(species: Species) {
+    this._species = species;
+  }
+
+  get species(): Species {
+    return this._species;
+  }
+
+  set captureRate(captureRate: number) {
+    this._captureRate = captureRate;
+  }
+
+  get captureRate(): number {
+    return this._captureRate;
+  }
+
+  set habitat(habitat: string) {
+    this._habitat = habitat;
+  }
+
+  get habitat(): string {
+    return this._habitat;
+  }
+
   set stats(stats: Stat[]) {
     this._stats = stats;
   }
@@ -155,86 +181,140 @@ export class PokemonViewComponent implements OnInit {
 
   ngOnInit(): void {
     if(this.pokemon) {
-      //Set id
+      this.setId();
+      this.setName();
+      this.setType();
+      this.setPhoto();
+      this.setHeight();
+      this.setWeight();
+      this.setBaseExp();
+      this.setAbilities();
+      this.setupChart();
+
       if(this.pokemon.id) {
-        this.id = this.pokemon.id;
-      } else {
-        this.id = 0;
-      }
-      
-      //Set name
-      if(this.pokemon.name) {
-        this.name = this.pokemon.name;
-      } else {
-        this.name = 'N/A';
-      }
-      
-      //Set type
-      if(this.pokemon.types && this.pokemon.types.length > 0) {
-        const types = this.pokemon.types.map(obj => {
-          return obj.type && obj.type.name ? obj.type.name : '';
-        })
-        this.types = types;
-      } else {
-        this.types = ['N/A'];
-      }
-      
-      //Set photo
-      if(
-        this.pokemon.sprites
-        && this.pokemon.sprites.other
-        && this.pokemon.sprites.other.home
-        && this.pokemon.sprites.other.home.front_default
-      ) {
-        this.photo = this.pokemon.sprites.other.home.front_default;
-      } else {
-        this.photo = '';
-      }
-
-      //Set Height
-      if(this.pokemon.height) {
-        this.height = this.pokemon.height;
-      }
-
-      //Set Weight
-      if(this.pokemon.weight) {
-        this.weight = this.pokemon.weight;
-      }
-
-      //Setup charts
-      if(this.pokemon.stats) {
-        this.pokemon.stats.map(stat => {
-          //Set chart labels
-          if(stat.stat?.name) {
-            let tempStatName: string;
-            tempStatName = stat.stat.name.split('-').join(' ').toUpperCase();
-            this.chartLabels.push(tempStatName);
-          }
-          //Set chart stats
-          if(stat.base_stat) {
-            this.chartData[0].data?.push(stat.base_stat)
-          }
-          this.stats.push({
-            name: stat.stat?.name,
-            base_stat: stat.base_stat
-          })
-        })
-        //Set name each element
-        this.chartData[0].label = this.name;
-      }
-
-      //Set abilities
-      if(this.pokemon.abilities) {
-        this.pokemon.abilities.map(ability => {
-          if(ability.ability?.name) {
-            this.abilities.push(ability.ability.name.split('-').join(' '))
-          }
-        })
+        this.getSpecies(this.pokemon.id);
       }
     }
   }
 
-  convertHeightWeight(value: number) {
+  private setId(): void {
+    if(this.pokemon.id) {
+      this.id = this.pokemon.id;
+    }
+  }
+
+  private setName(): void {
+    if(this.pokemon.name) {
+      this.name = this.pokemon.name.split('-').join(' ');
+    } else {
+      this.name = 'N/A';
+    }
+  }
+
+  private setType(): void {
+    if(this.pokemon.types && this.pokemon.types.length > 0) {
+      const types = this.pokemon.types.map(obj => {
+        return obj.type && obj.type.name ? obj.type.name : '';
+      })
+      this.types = types;
+    }
+  }
+
+  private setPhoto(): void {
+    if(
+      this.pokemon.sprites
+      && this.pokemon.sprites.other
+      && this.pokemon.sprites.other.home
+      && this.pokemon.sprites.other.home.front_default
+    ) {
+      this.photo = this.pokemon.sprites.other.home.front_default;
+    } else {
+      this.photo = '';
+    }
+  }
+
+  private setBaseExp(): void {
+    if(this.pokemon.base_experience) {
+      this.baseExp = this.pokemon.base_experience;
+    }
+  }
+
+  private setHeight(): void {
+    if(this.pokemon.height) {
+      this.height = this.pokemon.height;
+    }
+  }
+
+  private setWeight(): void {
+    if(this.pokemon.weight) {
+      this.weight = this.pokemon.weight;
+    }
+  }
+
+  private setCaptureRate(): void {
+    if(this.species.capture_rate) {
+      this.captureRate = this.species.capture_rate;
+    }
+  }
+
+  private sethabitat(): void {
+    if(this.species.habitat && this.species.habitat.name) {
+      this.habitat = this.species.habitat.name;
+    }
+  }
+
+  private setAbilities(): void {
+    if(this.pokemon.abilities) {
+      this.pokemon.abilities.map(ability => {
+        if(ability.ability?.name) {
+          this.abilities.push(ability.ability.name.split('-').join(' '))
+        }
+      })
+    }
+  }
+
+  convertHeightWeight(value: number): number {
     return value*0.1;
+  }
+
+  private setupChart(): void {
+    if(this.pokemon.stats) {
+      this.pokemon.stats.map(stat => {
+        //Set chart labels
+        if(stat.stat?.name) {
+          let tempStatName: string;
+          tempStatName = stat.stat.name.split('-').join(' ').toUpperCase();
+          this.chartLabels.push(tempStatName);
+        }
+        //Set chart stats
+        if(stat.base_stat) {
+          this.chartData[0].data?.push(stat.base_stat)
+        }
+        this.stats.push({
+          name: stat.stat?.name,
+          base_stat: stat.base_stat
+        })
+      })
+      //Set name each element
+      this.chartData[0].label = this.toTitleCase(this.name);
+    }
+  }
+
+  private toTitleCase(str: string): string {
+    return str.replace(
+      /\w\S*/g,
+      function(txt) {
+        return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
+      }
+    );
+  }
+
+  private getSpecies(id: number): void{
+    this.pokemonService.getSpecies(id).subscribe(response => {
+      this.species = response;
+      this.setCaptureRate();
+      this.sethabitat();
+      console.log(response)
+    })
   }
 }
