@@ -5,7 +5,10 @@ export interface Species {
     {
       name?: string
     }
-  ]
+  ],
+  evolution_chain: {
+    url?: string
+  }
   evolves_from_species?: {
     name?: string
   },

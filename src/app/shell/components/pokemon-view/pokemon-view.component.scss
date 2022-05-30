@@ -17,6 +17,7 @@
     height: 32px;
     background: transparent;
     border: none;
+    z-index: 10;
   }
 
   .close-dialog-button:before, .close-dialog-button:after {
@@ -52,88 +53,122 @@
   .dialog-body {
     margin: 25px 0 0 0;
     display: flex;
-    flex-wrap: nowrap;
+    flex-wrap: wrap;
     justify-content: center;
 
-    .body-first-part {
-      display: flex;
-      flex-wrap: nowrap;
-      justify-content: space-around;
-      align-items: flex-start;
-      min-height: 400px;
-      width: 100%;
-      padding: 0 10px;
+    .first-part-wrapper {
+      display: block;
+      // max-width: 100%;
 
-      .pokemon-photo {
-        max-width: 40%;
-        max-height: auto;
+      .body-first-part {
         display: flex;
-        align-items: center;
-        justify-content: center;
-        margin: auto;
+        flex-wrap: wrap;
+        justify-content: space-around;
+        align-items: flex-start;
+        min-height: 400px;
+        // max-width: 100%;
+        margin: 0 0 80px 0;
+        padding: 0 10px;
   
-        img {
-          max-width: 80%;
+        .pokemon-photo {
+          max-width: 40%;
           max-height: auto;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          text-align: center;
+          margin: auto;
+    
+          img {
+            max-width: 80%;
+            max-height: auto;
+          }
+  
+          .pokeball {
+            max-width: 60% !important;
+            max-height: 60% !important;
+          }
         }
-
-        .pokeball {
-          max-width: 60% !important;
-          max-height: 60% !important;
-        }
-      }
-
-      .pokemon-details {
-        width: 25%;
-        margin: auto 0;
-
-        .details-wrapper {
-          padding: 0 0 0 10%;
-
-          .detail {
-            width: 90%;
-            display: inline-flex;
   
-            .detail-title {
-              width: 42%;
-              display: inline-block;
-              margin: 7px 0;
-              color: #000000de;
-              font-weight: 600;
-              font-size: 20px;
-            }
+        .pokemon-details {
+          width: 25%;
+          margin: auto 0;
   
-            .detail-content {
-              width: 58%;
-              display: inline-block;
-              margin: 7px 0;
-              color: #000000de;
-              font-weight: 300;
-              font-size: 20px;
-            }
+          .details-wrapper {
+            padding: 0 0 0 10%;
   
-            .pokemon-type {
-              display: flex;
-              flex-wrap: wrap;
-              justify-content: left;
+            .detail {
+              width: 90%;
+              display: inline-flex;
+    
+              .detail-title {
+                width: 42%;
+                display: inline-block;
+                margin: 7px 7px 7px 0;
+                color: #000000de;
+                font-weight: 600;
+                font-size: 20px;
+                text-align: right;
+              }
+    
+              .detail-content {
+                width: 58%;
+                display: inline-block;
+                margin: 7px 0;
+                color: #000000de;
+                font-weight: 300;
+                font-size: 20px;
+              }
+    
+              .pokemon-type {
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: left;
+              }
             }
           }
         }
-      }
-  
-      .pokemon-stats-chart {
-        max-width: 35%;
-        margin: auto 0;
-        display: flex;
-        align-items: center;
-        justify-content: center;
+    
+        .pokemon-stats-chart {
+          max-width: 35%;
+          margin: auto 0;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+
+          div {
+            position: relative;
+            margin: 0 20px 0 0;
+            height: 450px;
+            width: 450px;
+          }
+        }
       }
     }
 
-    .body-second-part {
-      display: flex;
-      flex-wrap: nowrap;
-      justify-content: space-between;
+    .second-part-wrapper {
+      display: block;
+      max-width: 100%;
+
+      .body-second-part {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-around;
+        align-items: flex-start;
+        max-width: 100%;
+        margin: 0 0 80px 0;
+        padding: 0 10px;
+  
+        .evolution-chart {
+          max-width: 40%;
+          max-height: auto;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          text-align: center;
+          margin: auto;
+        }
+      }
     }
   }
 }

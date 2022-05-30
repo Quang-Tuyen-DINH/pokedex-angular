@@ -1,4 +1,4 @@
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, DoCheck, Inject, OnInit } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { ChartData } from '../../models/chart-data.model';
 import { Pokemon } from '../../models/pokemon.model';
@@ -11,7 +11,7 @@ import { PokemonService } from '../../services/pokemon.service';
   templateUrl: './pokemon-view.component.html',
   styleUrls: ['./pokemon-view.component.scss']
 })
-export class PokemonViewComponent implements OnInit {
+export class PokemonViewComponent implements OnInit, DoCheck {
   private _id: number;
   private _name: string;
   private _types: string[];
@@ -26,7 +26,7 @@ export class PokemonViewComponent implements OnInit {
   private _species: Species;
   private _stats: Stat[] = [];
   private _encouters: string[] = [];
-  private _evolutionChain: any[];
+  private _evolutionUrl: string;
   //Radar Chart
   chartOptions = {
     title: {
@@ -158,6 +158,14 @@ export class PokemonViewComponent implements OnInit {
     return this._stats;
   }
 
+  set evolutionUrl(evolutionUrl: string) {
+    this._evolutionUrl = evolutionUrl;
+  }
+
+  get evolutionUrl(): string {
+    return this._evolutionUrl;
+  }
+
   set chartLabels(chartLabels: string[]) {
     this._chartLabels = chartLabels;
   }
@@ -194,6 +202,12 @@ export class PokemonViewComponent implements OnInit {
       if(this.pokemon.id) {
         this.getSpecies(this.pokemon.id);
       }
+    }
+  }
+
+  ngDoCheck(): void {
+    if(this.species.evolution_chain.url) {
+      this.setEvolutionChain();
     }
   }
 
@@ -259,7 +273,7 @@ export class PokemonViewComponent implements OnInit {
 
   private sethabitat(): void {
     if(this.species.habitat && this.species.habitat.name) {
-      this.habitat = this.species.habitat.name;
+      this.habitat = this.species.habitat.name.split('-').join(' ');
     }
   }
 
@@ -300,6 +314,12 @@ export class PokemonViewComponent implements OnInit {
     }
   }
 
+  private setEvolutionChain(): void {
+    if(this.species.evolution_chain && this.species.evolution_chain.url) {
+      this.evolutionUrl = this.species.evolution_chain.url;
+    }
+  }
+
   private toTitleCase(str: string): string {
     return str.replace(
       /\w\S*/g,
@@ -314,7 +334,6 @@ export class PokemonViewComponent implements OnInit {
       this.species = response;
       this.setCaptureRate();
       this.sethabitat();
-      console.log(response)
     })
   }
 }

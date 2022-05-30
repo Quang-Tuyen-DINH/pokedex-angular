@@ -34,20 +34,6 @@ export class PokemonService {
   set total(total: number) {
     this._total = this._total + total;
   }
-  
-  // getType(pokemon: Pokemon): string {
-  //   if(
-  //     pokemon
-  //     && pokemon.types
-  //     && pokemon.types.length > 0
-  //     && pokemon.types[0].type
-  //     && pokemon.types[0].type.name
-  //   ) {
-  //     return pokemon.types[0].type.name;
-  //   } else {
-  //     return '';
-  //   }
-  // }
 
   getPokemon(name: string): Observable<any> {
     const url = `${this.url}${name}`;
@@ -63,8 +49,7 @@ export class PokemonService {
     return this.http.get<any>(this.url);
   }
 
-  getEvolution(id: number): Observable<any> {
-    const url = `${environment.pokeUrl}evolution-chain/${id}`;
+  getEvolution(url: string): Observable<any> {
     return this.http.get<any>(url);
   }
 

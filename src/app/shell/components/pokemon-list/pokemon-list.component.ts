@@ -70,17 +70,17 @@ export class PokemonListComponent implements OnInit, OnDestroy {
     });
   }
   
-  @HostListener('window:scroll', ['$event'])
-  onWindowScroll() {
-      let element = document.querySelector('#cdk-viewport') as HTMLElement;
-      if (window.pageYOffset > element.clientHeight) {
-        // element.classList.add('navbar-inverse');
-        console.log('scrolled down')
-      } else {
-        // element.classList.remove('navbar-inverse');
-        console.log('scrolled to top')
-      }
-    }
+  // @HostListener('window:scroll', ['$event'])
+  // onWindowScroll() {
+  //     let element = document.querySelector('#cdk-viewport') as HTMLElement;
+  //     if (window.pageYOffset > element.clientHeight) {
+  //       // element.classList.add('navbar-inverse');
+  //       console.log('scrolled down')
+  //     } else {
+  //       // element.classList.remove('navbar-inverse');
+  //       console.log('scrolled to top')
+  //     }
+  //   }
 
   ngOnDestroy(): void {
     this.pokemonListSubscription.unsubscribe();

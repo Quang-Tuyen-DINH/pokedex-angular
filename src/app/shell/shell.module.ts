@@ -12,6 +12,7 @@ import {
 } from './components';
 import { ChartsModule } from "@rinminase/ng-charts";
 import { MovesTableComponent } from './components/pokemon-view/components/moves-table/moves-table.component';
+import { EvolutionChainComponent } from './components/pokemon-view/components/evolution-chain/evolution-chain.component';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import { MovesTableComponent } from './components/pokemon-view/components/moves-
     PokemonCardComponent,
     LandingComponent,
     MovesTableComponent,
+    EvolutionChainComponent,
   ],
   imports: [
     CommonModule,
