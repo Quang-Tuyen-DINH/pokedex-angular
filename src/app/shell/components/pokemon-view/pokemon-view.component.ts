@@ -47,6 +47,9 @@ export class PokemonViewComponent implements OnInit {
       },
       angleLines: {
         color: "#000000de"
+      },
+      ticks: {
+         maxTicksLimit: 1
       }
     }
   };
@@ -54,9 +57,9 @@ export class PokemonViewComponent implements OnInit {
   private _chartData: ChartData[] = [{
     label: '',
     fill: true,
-    backgroundColor: '',
-    borderColor: '',
-    pointBackgroundColor: '',
+    backgroundColor: 'rgba(255,198,0,0.75)',
+    borderColor: 'rgba(255,198,0)',
+    pointBackgroundColor: 'rgba(255,198,0)',
     pointBorderColor: '#fff',
     data: []
   }];
