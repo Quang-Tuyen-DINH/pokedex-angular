@@ -11,7 +11,7 @@ import { PokemonService } from '../../services/pokemon.service';
   templateUrl: './pokemon-view.component.html',
   styleUrls: ['./pokemon-view.component.scss']
 })
-export class PokemonViewComponent implements OnInit, DoCheck {
+export class PokemonViewComponent implements OnInit {
   private _id: number;
   private _name: string;
   private _types: string[];
@@ -22,11 +22,10 @@ export class PokemonViewComponent implements OnInit, DoCheck {
   private _weight: number;
   private _captureRate: number;
   private _habitat: string;
-  private _moves: Pokemon["moves"];
   private _species: Species;
   private _stats: Stat[] = [];
-  private _encouters: string[] = [];
   private _evolutionUrl: string;
+  private _speciesError: boolean;
   //Radar Chart
   chartOptions = {
     title: {
@@ -56,7 +55,7 @@ export class PokemonViewComponent implements OnInit, DoCheck {
     label: '',
     fill: true,
     backgroundColor: '',
-    borderColor:'',
+    borderColor: '',
     pointBackgroundColor: '',
     pointBorderColor: '#fff',
     data: []
@@ -182,6 +181,14 @@ export class PokemonViewComponent implements OnInit, DoCheck {
     return this._chartData;
   }
 
+  set speciesError(speciesError: boolean) {
+    this._speciesError = speciesError;
+  }
+
+  get speciesError(): boolean {
+    return this._speciesError;
+  }
+
   constructor(
     @Inject(MAT_DIALOG_DATA) private pokemon: Pokemon,
     private pokemonService: PokemonService
@@ -198,18 +205,18 @@ export class PokemonViewComponent implements OnInit, DoCheck {
       this.setBaseExp();
       this.setAbilities();
       this.setupChart();
+    }
 
-      if(this.pokemon.id) {
-        this.getSpecies(this.pokemon.id);
-      }
+    if(this.pokemon.id) {
+      this.getSpecies(this.pokemon.id);
     }
   }
 
-  ngDoCheck(): void {
-    if(this.species.evolution_chain.url) {
-      this.setEvolutionChain();
-    }
-  }
+  // ngDoCheck(): void {
+  //   if(this.species.evolution_chain.url) {
+  //     this.setEvolutionChain();
+  //   }
+  // }
 
   private setId(): void {
     if(this.pokemon.id) {
@@ -266,13 +273,13 @@ export class PokemonViewComponent implements OnInit, DoCheck {
   }
 
   private setCaptureRate(): void {
-    if(this.species.capture_rate) {
+    if(this.species && this.species.capture_rate) {
       this.captureRate = this.species.capture_rate;
     }
   }
 
   private sethabitat(): void {
-    if(this.species.habitat && this.species.habitat.name) {
+    if(this.species && this.species.habitat && this.species.habitat.name) {
       this.habitat = this.species.habitat.name.split('-').join(' ');
     }
   }
@@ -315,7 +322,7 @@ export class PokemonViewComponent implements OnInit, DoCheck {
   }
 
   private setEvolutionChain(): void {
-    if(this.species.evolution_chain && this.species.evolution_chain.url) {
+    if(this.species && this.species.evolution_chain && this.species.evolution_chain.url) {
       this.evolutionUrl = this.species.evolution_chain.url;
     }
   }
@@ -334,6 +341,9 @@ export class PokemonViewComponent implements OnInit, DoCheck {
       this.species = response;
       this.setCaptureRate();
       this.sethabitat();
+      this.setEvolutionChain();
+    }, error => {
+      this.speciesError = true;
     })
   }
 }

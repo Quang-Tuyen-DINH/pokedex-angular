@@ -162,6 +162,27 @@
         .evolution-chain {
           display: block;
         }
+
+        .no-species {
+            color: #000000de !important;
+            font-weight: 300;
+            font-size: 20px;
+            text-align: center;
+
+            .evolution-title {
+              display: block;
+              margin: 0 0 80px 0;
+              color: #000000de;
+              font-weight: 600;
+              font-size: 40px;
+            }
+
+            .species-message {
+              color: #000000de !important;
+              font-weight: 300;
+              font-size: 20px;
+            }
+        }
       }
     }
   }
