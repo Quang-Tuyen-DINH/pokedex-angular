@@ -1,4 +1,4 @@
-import { Component, HostListener, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { concat, Subscription } from 'rxjs';
 import { PokemonService } from 'src/app/shell/services/pokemon.service';
@@ -12,7 +12,6 @@ import { PokemonViewComponent } from '../pokemon-view/pokemon-view.component';
 })
 export class PokemonListComponent implements OnInit, OnDestroy {
   private pokemonListSubscription: Subscription = new Subscription();
-  private _pokemonsLoaded: Pokemon[] =[];
 
   constructor(
     private pokemonService: PokemonService,
@@ -23,16 +22,6 @@ export class PokemonListComponent implements OnInit, OnDestroy {
     if(!this.pokemons.length) {
       this.getTotal();
     }
-  }
-
-  set pokemonsLoaded(pokemons: Pokemon[]) {
-    pokemons.map(pokemon => {
-      this._pokemonsLoaded.push(pokemon);
-    })
-  }
-
-  get pokemonsLoaded(): Pokemon[] {
-    return this._pokemonsLoaded;
   }
 
   get pokemons(): Pokemon[] {
@@ -65,22 +54,9 @@ export class PokemonListComponent implements OnInit, OnDestroy {
       panelClass: 'pokemon-view-dialog',
       width: '100%',
       height: '100%',
-      data: pokemon,
-      id: 'pokemon-view-dialog'
+      data: pokemon
     });
   }
-  
-  // @HostListener('window:scroll', ['$event'])
-  // onWindowScroll() {
-  //     let element = document.querySelector('#cdk-viewport') as HTMLElement;
-  //     if (window.pageYOffset > element.clientHeight) {
-  //       // element.classList.add('navbar-inverse');
-  //       console.log('scrolled down')
-  //     } else {
-  //       // element.classList.remove('navbar-inverse');
-  //       console.log('scrolled to top')
-  //     }
-  //   }
 
   ngOnDestroy(): void {
     this.pokemonListSubscription.unsubscribe();

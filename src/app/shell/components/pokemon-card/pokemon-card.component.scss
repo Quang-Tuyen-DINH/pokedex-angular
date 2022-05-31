@@ -1,5 +1,6 @@
 .card-container {
   height: 200px;
+  width: 160px;
   border-radius: 20px;
 
   .card-header{
@@ -36,7 +37,7 @@
       .pokemon-name-short {
         display: block;
         margin: 0.4rem 0 1.2rem 0;
-        font-weight: 600;
+        font-weight: 700;
         font-size: 20px;
       }
 
