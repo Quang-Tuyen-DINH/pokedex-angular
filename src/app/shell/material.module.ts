@@ -4,6 +4,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { ScrollingModule } from '@angular/cdk/scrolling';
 import { MatDialogModule } from '@angular/material/dialog';
+import { MatButtonModule } from '@angular/material/button';
 
 @NgModule({
   exports: [
@@ -11,7 +12,8 @@ import { MatDialogModule } from '@angular/material/dialog';
     MatCardModule,
     MatGridListModule,
     ScrollingModule,
-    MatDialogModule
+    MatDialogModule,
+    MatButtonModule
   ],
 })
 export class MaterialModule { }

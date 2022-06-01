@@ -6,8 +6,7 @@ import { PokemonViewComponent } from './components/pokemon-view/pokemon-view.com
 
 const routes: Routes = [
   { path: '', component: LandingComponent },
-  { path: 'list', component: PokemonListComponent },
-  { path: 'pokemon/:name', component: PokemonViewComponent }
+  { path: 'list', component: PokemonListComponent }
 ];
 
 @NgModule({
