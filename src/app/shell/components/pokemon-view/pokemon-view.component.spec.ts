@@ -24,10 +24,4 @@ describe('PokemonViewComponent', () => {
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
-
-  it('should create pokemon-view', () => {
-    fixture = TestBed.createComponent(PokemonViewComponent);
-    const component = fixture.debugElement.componentInstance;
-    expect(component).toBeTruthy();
-  });
 });

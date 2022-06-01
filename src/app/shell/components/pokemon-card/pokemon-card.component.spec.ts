@@ -18,10 +18,4 @@ describe('PokemonCardComponent', () => {
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
-
-  it('should create pokemon-card', () => {
-    fixture = TestBed.createComponent(PokemonCardComponent);
-    const component = fixture.debugElement.componentInstance;
-    expect(component).toBeTruthy();
-  });
 });
