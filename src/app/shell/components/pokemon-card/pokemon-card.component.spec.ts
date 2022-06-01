@@ -19,7 +19,9 @@ describe('PokemonCardComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it('should create pokemon-card', () => {
+    fixture = TestBed.createComponent(PokemonCardComponent);
+    const component = fixture.debugElement.componentInstance;
     expect(component).toBeTruthy();
   });
 });

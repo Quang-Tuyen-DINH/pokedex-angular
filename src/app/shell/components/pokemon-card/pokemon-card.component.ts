@@ -49,37 +49,42 @@ export class PokemonCardComponent implements OnInit {
 
   ngOnInit(): void {
     if(this.pokemon) {
-      if(this.pokemon.id) {
-        this.id = this.pokemon.id;
-      } else {
-        this.id = 0;
-      }
+      this.setId();
+      this.setName();
+      this.setType();
+      this.setPhoto();
+    }
+  }
+  
+  private setId(): void {
+    if(this.pokemon.id) {
+      this.id = this.pokemon.id;
+    }
+  }
 
-      if(this.pokemon.name) {
-        this.name = this.pokemon.name.split('-').join(' ');
-      } else {
-        this.name = 'N/A';
-      }
+  private setName(): void {
+    if(this.pokemon.name) {
+      this.name = this.pokemon.name.split('-').join(' ');
+    }
+  }
 
-      if(this.pokemon.types && this.pokemon.types.length > 0) {
-        const types = this.pokemon.types.map(obj => {
-          return obj.type && obj.type.name ? obj.type.name : '';
-        })
-        this.types = types;
-      } else {
-        this.types = ['N/A'];
-      }
+  private setType(): void {
+    if(this.pokemon.types && this.pokemon.types.length > 0) {
+      const types = this.pokemon.types.map(obj => {
+        return obj.type && obj.type.name ? obj.type.name : '';
+      })
+      this.types = types;
+    }
+  }
 
-      if(
-        this.pokemon.sprites
-        && this.pokemon.sprites.other
-        && this.pokemon.sprites.other.home
-        && this.pokemon.sprites.other.home.front_default
-      ) {
-        this.photo = this.pokemon.sprites.other.home.front_default;
-      } else {
-        this.photo = '';
-      }
+  private setPhoto():void {
+    if(
+      this.pokemon.sprites
+      && this.pokemon.sprites.other
+      && this.pokemon.sprites.other.home
+      && this.pokemon.sprites.other.home.front_default
+    ) {
+      this.photo = this.pokemon.sprites.other.home.front_default;
     }
   }
 }

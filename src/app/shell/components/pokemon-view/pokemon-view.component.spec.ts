@@ -1,4 +1,6 @@
+import { HttpClient } from '@angular/common/http';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 import { PokemonViewComponent } from './pokemon-view.component';
 
@@ -8,7 +10,11 @@ describe('PokemonViewComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ PokemonViewComponent ]
+      declarations: [ PokemonViewComponent ],
+      providers: [
+        { provide: MAT_DIALOG_DATA, useValue: {} },
+        { provide: HttpClient, useValue: {} }
+      ]
     })
     .compileComponents();
   });
@@ -19,7 +25,9 @@ describe('PokemonViewComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it('should create pokemon-view', () => {
+    fixture = TestBed.createComponent(PokemonViewComponent);
+    const component = fixture.debugElement.componentInstance;
     expect(component).toBeTruthy();
   });
 });
