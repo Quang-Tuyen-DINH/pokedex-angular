@@ -1,5 +1,5 @@
 # Pokédex
-For many years trainers around the world have worked together to collect data about Pokémon and created the [Pokéapi](https://pokeapi.co/api/v2/pokemon/). I'm a developer and I would like to help creating a Pokédex app, with the assistance of the Pokédex, people will find more useful informations about pokémons.
+For many years trainers around the world have worked together to collect data about Pokémon and created the [Pokéapi](https://pokeapi.co//). I'm a developer and I would like to help creating a Pokédex app, with the assistance of the Pokédex, people will find more useful informations about pokémons.
 
 ![Screenshot](./src/assets/demo/landing.jpg)
 ![Screenshot](./src/assets/demo/list.jpg)
@@ -50,3 +50,11 @@ At the Pokémon List `http://localhost:4200/list`, user will find a list of pok�
 ### Dialog of details
 In the dialog of details, A clear photo of pokémon is shown on the left, its basic biography is displayed in the center with a radar chart about its stats on the right. Below is the evolution chain if pokémon evolves from time to time or its species data has been collected.
 
+## Technologies used
+* [Typescript](https://www.typescriptlang.org/)
+* [Angular](https://angular.io/)
+* [Rxjs](https://rxjs.dev/)
+* [Angular Material](https://material.angular.io/)
+
+## API
+[Pokeapi](https://pokeapi.co/)
