@@ -49,7 +49,7 @@ export class PokemonViewComponent implements OnInit {
         color: "#000000de"
       },
       ticks: {
-         maxTicksLimit: 1
+         maxTicksLimit: 2
       }
     }
   };

@@ -13,7 +13,7 @@ import { FooterComponent, HeaderComponent } from './shell/components';
   declarations: [
     AppComponent,
     HeaderComponent,
-    FooterComponent
+    FooterComponent,
   ],
   imports: [
     BrowserModule,

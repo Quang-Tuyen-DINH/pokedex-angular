@@ -3,6 +3,7 @@
     <cdk-virtual-scroll-viewport
       itemSize="0"
       id="cdk-viewport"
+      scrollTracker
     >
       <div class="card" *cdkVirtualFor="let pkm of pokemons">
         <app-pokemon-card (click)="openPokemonDialog(pkm)" [pokemon]="pkm"></app-pokemon-card>

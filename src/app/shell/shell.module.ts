@@ -12,6 +12,7 @@ import {
 } from './components';
 import { ChartsModule } from "@rinminase/ng-charts";
 import { EvolutionChainComponent } from './components/pokemon-view/components/evolution-chain/evolution-chain.component';
+import { ScrollTrackerDirective } from './components/pokemon-list/directives/scroll-tracker.directive';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import { EvolutionChainComponent } from './components/pokemon-view/components/ev
     PokemonCardComponent,
     LandingComponent,
     EvolutionChainComponent,
+    ScrollTrackerDirective
   ],
   imports: [
     CommonModule,

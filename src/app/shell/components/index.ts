@@ -4,3 +4,4 @@ export { PokemonListComponent } from './pokemon-list/pokemon-list.component';
 export { PokemonCardComponent } from './pokemon-card/pokemon-card.component';
 export { PokemonViewComponent } from './pokemon-view/pokemon-view.component';
 export { FooterComponent } from './footer/footer.component';
+export { ScrollTrackerDirective } from './pokemon-list/directives/scroll-tracker.directive';
