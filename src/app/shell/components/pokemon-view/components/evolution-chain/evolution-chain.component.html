@@ -1,0 +1,16 @@
+<div class="evolution-container">
+  <div *ngIf="pokemonChain">
+    <span class="evolution-title">Evolutions Chain</span>
+    <div class="evolutions-wrapper" *ngIf="pokemonChain.length > 1; else noEvolution">
+      <div class="evolution-wrapper" *ngFor="let pkm of pokemonChain; let i = index">
+        <a mat-dialog-close>
+          <app-pokemon-card class="card" (click)="openPokemonDialog(pkm)" [pokemon]="pkm"></app-pokemon-card>
+        </a>
+        <div *ngIf="(pokemonChain.length - 1) != i" class="arrow-right"></div>
+      </div>
+    </div>
+    <ng-template #noEvolution>
+      <span class="no-evolution">Pokemon has no evolution</span>
+    </ng-template>
+  </div>
+</div>

@@ -1,0 +1,46 @@
+.evolution-container {
+    display: block;
+
+    div {
+        text-align: center;
+
+        .evolution-title {
+            display: block;
+            margin: 0 0 80px 0;
+            color: #000000de;
+            font-weight: 600;
+            font-size: 40px;
+        }
+
+        .evolutions-wrapper {
+            display: flex;
+            
+            .evolution-wrapper {
+                display: flex;
+                align-items: center;
+
+                a {
+                    .card {
+                        cursor: pointer;
+                        margin: 0 30px 0 0;
+                    }
+                }
+
+                .arrow-right {
+                    width: 0; 
+                    height: 0;
+                    margin: 0 30px;
+                    border-top: 20px solid transparent;
+                    border-bottom: 20px solid transparent;
+                    border-left: 20px solid #fff;
+                }
+            }
+        }
+
+        .no-evolution {
+            color: #000000de !important;
+            font-weight: 300;
+            font-size: 20px;
+        }
+    }
+}

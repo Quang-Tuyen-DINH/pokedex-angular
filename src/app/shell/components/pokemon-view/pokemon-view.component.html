@@ -1,0 +1,86 @@
+<div class="dialog-container bg-{{types[0]}}">
+  <a class="close-dialog-button" mat-dialog-close></a>
+  <div>
+    <div class="dialog-header">
+      <span class="pokemon-name">{{name | titlecase}}</span>
+    </div>
+    <div class="dialog-body">
+      <div class="first-part-wrapper">
+        <div class="body-first-part">
+          <div class="pokemon-photo">
+            <div>
+              <img *ngIf="photo; else pokeball" src={{photo}} alt={{name}}>
+            </div>
+            <ng-template #pokeball>
+              <img class="pokeball" src="assets/pokeball-empty.svg">
+            </ng-template>
+          </div>
+          <div class="pokemon-details">
+            <div class="details-wrapper">
+              <div class="detail">
+                <span class="detail-title">ID</span>
+                <span class="detail-content">#{{id}}</span>
+              </div>
+              <div class="detail">
+                <span class="detail-title">Height</span>
+                <span class="detail-content">{{convertHeightWeight(height) | number:'1.1-2'}}m</span>
+              </div>
+              <div class="detail">
+                <span class="detail-title">Weight</span>
+                <span class="detail-content">{{convertHeightWeight(weight) | number:'1.1-2'}}kg</span>
+              </div>
+              <div class="detail">
+                <span class="detail-title">Base Experience</span>
+                <span class="detail-content">{{baseExp}}exp</span>
+              </div>
+              <div class="detail">
+                <span class="detail-title">Capture Rate</span>
+                <span class="detail-content">{{captureRate}}</span>
+              </div>
+              <div class="detail">
+                <span class="detail-title">Habitat</span>
+                <span class="detail-content">{{habitat | titlecase}}</span>
+              </div>
+              <div class="detail">
+                <span class="detail-title">Abilities</span>
+                <span class="detail-content">
+                  <span *ngFor="let ability of abilities" style="padding-bottom: 10px; display: block;">{{ability | titlecase}}</span>
+                </span>
+              </div>
+              <div class="detail">
+                <span class="detail-title">Type</span>
+                <span class="detail-content">
+                  <mat-chip-list class="pokemon-type">
+                    <mat-chip class="type-{{type}}" *ngFor="let type of types">{{type | titlecase}}</mat-chip>
+                  </mat-chip-list>
+                </span>
+              </div>
+            </div>
+          </div>
+          <div class="pokemon-stats-chart">
+            <div>
+                <canvas baseChart
+                  chartType="radar"
+                  [datasets]="chartData"
+                  [options]="chartOptions"
+                  [labels]="chartLabels">
+                </canvas>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="second-part-wrapper">
+        <div class="body-second-part">
+          <div *ngIf="species" class="evolution-chain">
+            <app-evolution-chain [evolutionUrl]="evolutionUrl"></app-evolution-chain>
+          </div>
+          <div class="no-species" *ngIf="speciesError">
+            <span class="evolution-title">Evolutions Chain</span>
+            <span class="species-message">Species data is awaiting for you to collect</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="dialog-footer"></div>
+  </div>
+</div>

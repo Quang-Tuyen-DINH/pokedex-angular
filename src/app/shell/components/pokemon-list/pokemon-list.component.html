@@ -1,0 +1,19 @@
+<div class="list-container">
+  <div *ngIf="pokemons.length === total; else spinner">
+    <cdk-virtual-scroll-viewport
+      itemSize="0"
+      id="cdk-viewport"
+      scrollTracker
+    >
+      <div class="card" *cdkVirtualFor="let pkm of pokemons">
+        <app-pokemon-card (click)="openPokemonDialog(pkm)" [pokemon]="pkm"></app-pokemon-card>
+      </div>
+    </cdk-virtual-scroll-viewport>
+  </div>
+  <ng-template #spinner>
+    <div class="loading-section">
+      <img class="spinner" src="assets/pokeball-spinner.svg">
+    </div>
+  </ng-template>
+  <div class="list-footer"></div>
+</div>
