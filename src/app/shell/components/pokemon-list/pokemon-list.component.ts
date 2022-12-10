@@ -34,7 +34,8 @@ export class PokemonListComponent implements OnInit, OnDestroy {
 
   getTotal() {
     this.pokemonService.getTotal().subscribe(response => {
-      this.pokemonService.total = response.count; 
+      // this.pokemonService.total = response.count;
+      this.pokemonService.total = 100;
       this.getPokemons();
     }, error => console.log('Error Occurred:', error));
   }
